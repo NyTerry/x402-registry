@@ -1,0 +1,17 @@
+# Horizon Pulse
+- Type: API (seller; not a facilitator)
+- Description: Pay-per-call APIs for AI agents over x402, no API key: web search, web fetch to markdown, HTTP proxy, structured page extract, page screenshots, PDF to text, x402 endpoint and CDP Bazaar index checks, and crypto market data. Also available as a remote MCP server at https://horizonpulse.dev/mcp.
+- Website (HTTPS): https://horizonpulse.dev
+- Logo (HTTPS): https://horizonpulse.dev/icon.png
+- Documentation: https://horizonpulse.dev/llms.txt
+- Public repository: https://github.com/horizon-pulse/horizon-pulse
+- Networks and chain identifiers: Base mainnet (eip155:8453); Solana mainnet (solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp)
+- Paid resource URLs and HTTP methods: the live list, with methods, is at https://horizonpulse.dev/.well-known/x402 (host: horizonpulse.dev only)
+- x402 version and payment scheme: x402 v2, exact
+- Token contract or mint, decimals: USDC on Base 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913, 6 decimals; USDC on Solana EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, 6 decimals
+- Seller payment recipient addresses: Base 0x5b32c973596078a967562ca652761404f19be0e9; Solana BjY98A6dS3GGLZdz2zHy8wK7XAwnQgNhCc66mfmBTRPz
+- Facilitator URL and supported endpoint: Coinbase CDP facilitator (Base); PayAI facilitator (Solana). We are not the facilitator.
+- Facilitator signer / relayer addresses (if applicable): not applicable (seller only)
+- Example successful settlement hashes and explorer links: available on request
+- Ownership evidence (domain-hosted proof or public project reference): the public repository github.com/horizon-pulse/horizon-pulse is the public source for horizonpulse.dev, and this PR is opened from the horizon-pulse GitHub account. Both payTo addresses appear in the unpaid 402 challenge served by horizonpulse.dev.
+- Public support channel: https://github.com/horizon-pulse/horizon-pulse/issues
