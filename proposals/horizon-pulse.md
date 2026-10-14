@@ -1,6 +1,6 @@
 # Horizon Pulse
 - Type: API (seller; not a facilitator)
-- Description: Pay-per-call APIs for AI agents over x402, no API key: web search, web fetch to markdown, HTTP proxy, structured page extract, page screenshots, PDF to text, x402 endpoint and CDP Bazaar index checks, crypto market data, and a discourse split (how public Hacker News and Bluesky posts split on a question; a sample, not a poll; $0.03). 17 paid routes. Also available as a remote MCP server at https://horizonpulse.dev/mcp (18 tools: 17 paid plus free money_market_rates).
+- Description: Pay-per-call APIs for AI agents over x402, no API key: web search, web fetch to markdown, HTTP proxy, structured page extract, page screenshots, PDF to text, x402 endpoint and CDP Bazaar index checks, crypto market data, and a discourse split (how public Hacker News and Bluesky posts split on a question; a sample, not a poll; $0.03), and transaction status (whether a transaction on Base, Polygon, Solana or the XRP Ledger has landed and is final; $0.002). 18 paid routes. Also available as a remote MCP server at https://horizonpulse.dev/mcp (19 tools: 18 paid plus free money_market_rates).
 - Website (HTTPS): https://horizonpulse.dev
 - Logo (HTTPS): https://horizonpulse.dev/icon.png
 - Documentation: https://horizonpulse.dev/llms.txt
