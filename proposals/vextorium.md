@@ -15,12 +15,12 @@
   - Base: Coinbase CDP x402 facilitator, base URL https://api.cdp.coinbase.com/platform/v2/x402 (`/supported`, `/verify`, `/settle`).
     - Every request is authenticated with Vextorium's CDP API key (a JWT per request, via @coinbase/cdp-sdk). Buyers need no credentials.
     - No fallback: if CDP fails, the call is not settled and no data is delivered.
-  - Solana: self-hosted, inside the seller process, with no public HTTP endpoint. It uses the reference @x402/svm exact facilitator (x402 2.28).
-    - The fee payer is advertised in `accepts[].extra.feePayer`.
-    - Fallback to the CDP facilitator if that fee payer is unavailable at startup.
+  - Solana: Coinbase CDP x402 facilitator (same base URL and authentication as Base) since 2026-10-16.
+    - The fee payer is CDP's and is advertised in `accepts[].extra.feePayer`.
+    - Before 2026-10-16 Solana was settled by a self-hosted reference @x402/svm facilitator (fee payer 4ZHcGaij9ktYqm9dNvMSMLsbT5D7BUrXDEzQGVH5h3Q6); the historical transaction in evidence 3 was settled that way.
   - Details: PAYMENTS.md §3.
-- Settlement order: verify → run the service → settle only if it answered < 400 → return the data with PAYMENT-RESPONSE. Failed calls are not charged.
-- Facilitator signer / relayer addresses (if applicable): Base settlements are submitted by CDP relayers (for example 0x8cda367232d78c067116e3260da881d2da8ffa39 and 0x8f5cb67b49555e614892b7233cfddebfb746e531). Solana fee payer: 4ZHcGaij9ktYqm9dNvMSMLsbT5D7BUrXDEzQGVH5h3Q6.
+- Settlement order: verify → run the service → settle only if it answered < 400 → return the data with PAYMENT-RESPONSE. Calls that fail before settlement are not charged. After a settlement attempt the server never issues a fresh payment request; uncertain outcomes are reconciled as described in PAYMENTS.md §4 (with a reproducible test).
+- Facilitator signer / relayer addresses (if applicable): Base settlements are submitted by CDP relayers (for example 0x8cda367232d78c067116e3260da881d2da8ffa39 and 0x8f5cb67b49555e614892b7233cfddebfb746e531). Solana settlements are submitted by CDP fee payers (advertised in `accepts[].extra.feePayer`, for example BFK9TLC3edb13K6v4YyH3DwPb5DSUpkWvb7XnqCL9b4F).
 - Remote MCP: https://api.vextorium.com/mcp, part of the same application. Details in PAYMENTS.md §5.
   - Transport: Streamable HTTP, stateless.
   - Tools: search_services and service_details (free), call_service (x402 over MCP).
@@ -29,14 +29,46 @@
 - Ownership evidence (domain-hosted proof or public project reference): the payment recipients above are published in the live 402 challenge served by api.vextorium.com and in https://api.vextorium.com/.well-known/x402; the public repository links to the same domain.
 - Public support channel: https://github.com/bru1noia/vextorium-mcp/issues
 
-## Settlement evidence (Base and Solana): customer payments, no operator tests
+## Settlement evidence (Base and Solana)
+
+End-to-end captures with retained responses (responses are retained since 2026-10-16, only for services that return public-source data):
+
+### A. Base: operator test, clearly labelled
+
+| Field | Value |
+|---|---|
+| Request | `POST https://api.vextorium.com/v1/fx-rates`, body `{"currencies":"EUR,JPY"}`, 2026-10-16 22:12:20 UTC |
+| Amount | 4000 atomic units (0.004 USDC) |
+| Response | `200`: `{"currencies":2,"types":[{"currency":"EUR","units_per_usd":0.888652,...}],"source":"Source: ECB statistics ..."}` |
+| Transaction | https://basescan.org/tx/0xf4ab31807b2498de8baa0a7106b2ccbcd26dfc9284626f9d4a32e95b1a10b76c |
+
+```json
+{"success": true, "payer": "0xa8FC…868F", "transaction": "0xf4ab31807b2498de8baa0a7106b2ccbcd26dfc9284626f9d4a32e95b1a10b76c", "network": "eip155:8453"}
+```
+
+### B. Solana: customer payment (not an operator test)
+
+| Field | Value |
+|---|---|
+| Request | `POST https://api.vextorium.com/v1/sec-company-ranking`, 2026-10-17 00:56:33 UTC. Request body not retained; the response matches the catalogue example body `{"metric": "revenue", "period": "CY2025", "limit": 10}`. |
+| Amount | 6000 atomic units (0.006 USDC) |
+| Response | `200`, 1644 bytes, sha256 `7de8b67a30835ea414de50aaa6f09bdbda67e56f8b8c78db1024e4d45b7e175a`: `{"metric":"revenue","period":"CY2025","companies":4384,"ranking":[{"company":"AMAZON.COM, INC.","ticker":"AMZN","value_usd":716924000000,"position":1},...],"source":"SEC EDGAR, XBRL frames"}` (public SEC data) |
+| Settled by | CDP facilitator, slot 457844994 (fee payer `BFK9TLC3edb13K6v4YyH3DwPb5DSUpkWvb7XnqCL9b4F`) |
+| On-chain | USDC `2WgR…Z23Wx` → `HcjfmZ…t3pz2`, 0.006 |
+| Transaction | https://solscan.io/tx/3MFE9Fp9DM7Y5MweKA4RXM3JMukcV3QN7opTqiPvixkbooEgZbNKz2Bo9v9BUYsB1v6KYZ7nvJbrpFgVfjFTH5PV |
+
+```json
+{"success": true, "payer": "2WgR…Z23Wx", "transaction": "3MFE9Fp9DM7Y5MweKA4RXM3JMukcV3QN7opTqiPvixkbooEgZbNKz2Bo9v9BUYsB1v6KYZ7nvJbrpFgVfjFTH5PV", "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"}
+```
+
+## Historical transaction evidence (customer payments, before responses were retained)
 
 Each payment below can be matched three ways:
 - **Settlement record**: our ledger entry, written when settlement succeeds. Its fields (`payer`, `transaction`, `network`, amount) are the fields of the decoded `PAYMENT-RESPONSE`.
 - **Delivery log**: the backend access log line for the same request, with method and HTTP status.
 - **On-chain**: success status, and USDC moved from payer to `payTo`.
 
-Times are UTC. Response bodies of these customer calls were not retained, so the delivery proof is the logged `200 OK`. The route's output format is its `example_body` / OpenAPI response schema.
+Times are UTC. Response bodies of these customer calls were not retained, so the delivery proof is the logged `200 OK`.
 
 ### 1. Base: `/v1` route at the typical price (0.003 USDC)
 
