@@ -1,0 +1,190 @@
+{
+  "reviewedAt": "2026-10-18",
+  "projects": [
+    {
+      "id": "tanod.dev",
+      "name": "Tanod",
+      "website": "https://tanod.dev",
+      "logo": "https://tanod.dev/icon.png",
+      "networks": [
+        "Base"
+      ],
+      "description": "Pay-per-call web, document and data tools for agents over HTTP and MCP.",
+      "category": "APIs & data",
+      "documentation": "https://tanod.dev/llms.txt",
+      "repository": "https://github.com/tanod-labs/tanod-tools",
+      "support": "https://github.com/tanod-labs/tanod-tools/issues",
+      "reference": "https://github.com/X402blockchains/x402-registry/pull/3",
+      "approved": true,
+      "approvedAt": "2026-10-18",
+      "approvalScope": "HTTP and MCP on Base only. Other advertised networks are outside this approval.",
+      "reviewer": "X402blockchains",
+      "order": 103,
+      "curated": false,
+      "metrics": {
+        "transactions": null,
+        "wallets": null,
+        "latest": null,
+        "attributed": false
+      },
+      "chains": [
+        {
+          "id": "Base",
+          "label": "Base"
+        }
+      ],
+      "resources": 0,
+      "services": [
+        {
+          "method": "POST",
+          "url": "https://tanod.dev/v1/fx"
+        }
+      ],
+      "evidence": [
+        {
+          "network": "Base",
+          "url": "https://basescan.org/tx/0x2d8a2a1e0d85213c2424264b6e4020d943c39b8a31a07de3fee4639aefcf0ed5",
+          "transaction": "0x2d8a2a1e0d85213c2424264b6e4020d943c39b8a31a07de3fee4639aefcf0ed5",
+          "position": 52365752,
+          "amountUSDC": "0.005",
+          "kind": "Submitted payment example",
+          "status": "Success"
+        }
+      ],
+      "analyticsNote": "Listing evidence has been reviewed. Complete transaction and wallet totals are not indexed; unavailable counts do not mean zero usage."
+    },
+    {
+      "id": "horizonpulse.dev",
+      "name": "Horizon Pulse",
+      "website": "https://horizonpulse.dev",
+      "logo": "https://horizonpulse.dev/icon.png",
+      "networks": [
+        "Base",
+        "Solana"
+      ],
+      "description": "Pay-per-call web search, extraction and data APIs for agents.",
+      "category": "APIs & data",
+      "documentation": "https://horizonpulse.dev/llms.txt",
+      "repository": "https://github.com/horizon-pulse/horizon-pulse",
+      "support": "https://github.com/horizon-pulse/horizon-pulse/issues",
+      "reference": "https://github.com/X402blockchains/x402-registry/pull/7",
+      "approved": true,
+      "approvedAt": "2026-10-18",
+      "approvalScope": "HTTP API on Base and Solana; hosted and local MCP on Base only. Other networks are outside this approval.",
+      "reviewer": "X402blockchains",
+      "order": 107,
+      "curated": false,
+      "metrics": {
+        "transactions": null,
+        "wallets": null,
+        "latest": null,
+        "attributed": false
+      },
+      "chains": [
+        {
+          "id": "Base",
+          "label": "Base"
+        },
+        {
+          "id": "Solana",
+          "label": "Solana"
+        }
+      ],
+      "resources": 0,
+      "services": [
+        {
+          "method": "GET",
+          "url": "https://horizonpulse.dev/api/pulse"
+        }
+      ],
+      "evidence": [
+        {
+          "network": "Base",
+          "url": "https://basescan.org/tx/0xe0fdf8231544f4da2162f8b4c2eb1299f338ab88486096ba54b77d7ac5cfbcd5",
+          "transaction": "0xe0fdf8231544f4da2162f8b4c2eb1299f338ab88486096ba54b77d7ac5cfbcd5",
+          "position": 52553538,
+          "amountUSDC": "0.005",
+          "kind": "Operator test",
+          "status": "Success"
+        },
+        {
+          "network": "Solana",
+          "url": "https://solscan.io/tx/2hUu7qauJuEXcLfzYnXZ7p4berVA49Mvd9hmtkWWRznsFQg9oWNMP1zfU1RrENTaTNLUX13oNm6gioKhFwokA1p7",
+          "transaction": "2hUu7qauJuEXcLfzYnXZ7p4berVA49Mvd9hmtkWWRznsFQg9oWNMP1zfU1RrENTaTNLUX13oNm6gioKhFwokA1p7",
+          "position": 456450921,
+          "amountUSDC": "0.005",
+          "kind": "Operator test",
+          "status": "Success"
+        }
+      ],
+      "analyticsNote": "Listing evidence has been reviewed. Complete transaction and wallet totals are not indexed; unavailable counts do not mean zero usage."
+    },
+    {
+      "id": "vextorium.com",
+      "name": "Vextorium",
+      "website": "https://vextorium.com",
+      "logo": "https://raw.githubusercontent.com/bru1noia/vextorium-mcp/main/logo.svg",
+      "networks": [
+        "Base",
+        "Solana"
+      ],
+      "description": "Pay-per-call data APIs covering onchain data, markets, statistics and developer tools, with remote MCP access.",
+      "category": "APIs & data",
+      "documentation": "https://github.com/bru1noia/vextorium-mcp/blob/main/PAYMENTS.md",
+      "repository": "https://github.com/bru1noia/vextorium-mcp",
+      "support": "https://github.com/bru1noia/vextorium-mcp/issues",
+      "reference": "https://github.com/X402blockchains/x402-registry/pull/9",
+      "approved": true,
+      "approvedAt": "2026-10-18",
+      "approvalScope": "Seller API on Base and Solana. Not a public facilitator. Other advertised networks are outside this approval.",
+      "reviewer": "X402blockchains",
+      "order": 109,
+      "curated": false,
+      "metrics": {
+        "transactions": null,
+        "wallets": null,
+        "latest": null,
+        "attributed": false
+      },
+      "chains": [
+        {
+          "id": "Base",
+          "label": "Base"
+        },
+        {
+          "id": "Solana",
+          "label": "Solana"
+        }
+      ],
+      "resources": 0,
+      "services": [
+        {
+          "method": "POST",
+          "url": "https://api.vextorium.com/v1/fx-rates"
+        }
+      ],
+      "evidence": [
+        {
+          "network": "Base",
+          "url": "https://basescan.org/tx/0xf4ab31807b2498de8baa0a7106b2ccbcd26dfc9284626f9d4a32e95b1a10b76c",
+          "transaction": "0xf4ab31807b2498de8baa0a7106b2ccbcd26dfc9284626f9d4a32e95b1a10b76c",
+          "position": 52699697,
+          "amountUSDC": "0.004",
+          "kind": "Operator test",
+          "status": "Success"
+        },
+        {
+          "network": "Solana",
+          "url": "https://solscan.io/tx/3MFE9Fp9DM7Y5MweKA4RXM3JMukcV3QN7opTqiPvixkbooEgZbNKz2Bo9v9BUYsB1v6KYZ7nvJbrpFgVfjFTH5PV",
+          "transaction": "3MFE9Fp9DM7Y5MweKA4RXM3JMukcV3QN7opTqiPvixkbooEgZbNKz2Bo9v9BUYsB1v6KYZ7nvJbrpFgVfjFTH5PV",
+          "position": 457844994,
+          "amountUSDC": "0.006",
+          "kind": "Submitted payment example",
+          "status": "Success"
+        }
+      ],
+      "analyticsNote": "Listing evidence has been reviewed. Complete transaction and wallet totals are not indexed; unavailable counts do not mean zero usage."
+    }
+  ],
+  "scope": "Approved seller/API directory profiles. Approval is not a security audit or a complete history certification."
+}
