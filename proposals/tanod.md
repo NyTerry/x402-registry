@@ -1,0 +1,23 @@
+# Tanod
+- Type: API
+- Description: Pay-per-call tools for AI agents over HTTP and MCP: web page to Markdown, screenshots, web search, PDF and image processing, OCR, DNS/email checks, chain data, Solidity contract scans and agent-package scans. A small free daily allowance per IP; beyond it each call returns an x402 payment request. No account or API key. Results are automated, not an audit.
+- Website (HTTPS): https://tanod.dev
+- Logo (HTTPS): https://tanod.dev/icon.png
+- Documentation: https://tanod.dev/connect/ (MCP), https://tanod.dev/openapi.json (HTTP API), https://tanod.dev/llms.txt
+- Public repository: https://github.com/tanod-labs (the browser tools are open source at https://github.com/tanod-labs/tanod-tools; the API is not)
+- Networks and chain identifiers: Base mainnet (eip155:8453) only. This application is for Base only. The 402 responses also offer Polygon (eip155:137) and Solana, but we have no settlements there yet, so we are not asking for them to be listed.
+- Paid resource URLs and HTTP methods: listed in https://tanod.dev/.well-known/x402 and https://tanod.dev/openapi.json (about 150 routes under https://tanod.dev/v1/, GET or POST per route); MCP at https://tanod.dev/mcp (streamable HTTP)
+- x402 version and payment scheme: v2 (v1 accepted), scheme exact
+- Token contract or mint, decimals: USDC 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913, 6 decimals
+- Seller payment recipient addresses: 0x593857A4a4F619543ea12394137C3004ce841720
+- Facilitator URL and supported endpoint: Coinbase CDP facilitator, https://api.cdp.coinbase.com/platform/v2/x402
+- Facilitator signer / relayer addresses (if applicable): not ours (CDP facilitator)
+- Example successful settlement hashes and explorer links:
+  - https://basescan.org/tx/0x2d8a2a1e0d85213c2424264b6e4020d943c39b8a31a07de3fee4639aefcf0ed5
+  - https://basescan.org/tx/0xc362a44e112092b6c96e662527a6d7139d61153e24e25906314710c957081447
+  - https://basescan.org/tx/0x85873019c58a89668e32d04bc1682c92feb04a6807c2d09bf5d4185fbc7b3ce3
+- Ownership evidence (domain-hosted proof or public project reference):
+  - Public repository file: https://github.com/tanod-labs/tanod-tools/blob/main/README.md#about-this-repository names 0x593857A4a4F619543ea12394137C3004ce841720 as the tanod.dev payment address.
+  - Domain file: https://tanod.dev/agent-registration.json (public, HTTP 200, application/json; our CDN may challenge some automated clients).
+  - Example paid endpoint: `POST https://tanod.dev/v1/fx` (USD 0.001). An unpaid request returns HTTP 402 with a base64 `PAYMENT-REQUIRED` header whose Base entry decodes to `{"scheme":"exact","network":"eip155:8453","amount":"1000","asset":"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913","payTo":"0x593857A4a4F619543ea12394137C3004ce841720"}`. Reproduce with `curl -si -X POST https://tanod.dev/v1/fx -H 'content-type: application/json' -d '{}'`.
+- Public support channel: https://github.com/tanod-labs/tanod-tools/issues (or ops@tanod.dev)
