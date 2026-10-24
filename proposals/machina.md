@@ -3,7 +3,7 @@
 - **Type:** API (seller; not a facilitator)
 - **Description:** Machine-to-machine utility APIs for AI agents, pay-per-call in USDC on Base via x402. No API key required. Eight REST endpoints cover Python code security scanning ($0.020), email validation — single ($0.007) and bulk ($0.50 per 100 addresses), domain intelligence ($0.050), PDF-to-Markdown — standard ($0.050) and large-document ($0.180), a free PDF pre-check ($0.000), and URL-to-Markdown extraction ($0.005).
 - **Website (HTTPS):** https://mach402.dev
-- **Logo:** https://mach402.dev/favicon.ico
+- **Logo:** https://mach402.dev/logo.png
 - **Documentation:** https://mach402.dev/docs
 - **Public support channel:** ceo@difftechstore.com (email)
 
